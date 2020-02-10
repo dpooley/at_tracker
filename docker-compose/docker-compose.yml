@@ -9,6 +9,7 @@ services:
       - 8000
     environment:
       - REDIS_HOST=at_tracker_redis
+      - LOGLEVEL=info
     restart: always
     command: ['api']
 
@@ -28,6 +29,7 @@ services:
     environment:
       - AT_API_KEY=0f0f0f0f0f0f0f0f0f0f0f0f0f
       - REDIS_HOST=at_tracker_redis
+      - LOGLEVEL=info
     restart: always
     command: ['celery_worker']
 
@@ -36,6 +38,7 @@ services:
     build: ../
     environment:
       - REDIS_HOST=at_tracker_redis
+      - LOGLEVEL=info
     restart: always
     command: ['celery_beat']
 
