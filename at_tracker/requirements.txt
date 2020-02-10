@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+httpx
+redis
+celery[redis]
+geojson

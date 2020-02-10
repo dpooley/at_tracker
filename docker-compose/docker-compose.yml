@@ -1,0 +1,49 @@
+version: '3.4'
+
+services:
+
+  at_tracker_api:
+    container_name: at_tracker_api
+    build: ../
+    ports:
+      - 8000
+    environment:
+      - REDIS_HOST=at_tracker_redis
+    restart: always
+    command: ['api']
+
+  at_tracker_http:
+    container_name: at_tracker_http
+    image: nginx:1.17
+    ports:
+      - 80:80
+    restart: always
+    volumes:
+      - ../static/:/usr/share/nginx/html:ro
+      - ./volumes/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+  at_tracker_celery_worker:
+    container_name: at_tracker_celery_worker
+    build: ../
+    environment:
+      - AT_API_KEY=0f0f0f0f0f0f0f0f0f0f0f0f0f
+      - REDIS_HOST=at_tracker_redis
+    restart: always
+    command: ['celery_worker']
+
+  at_tracker_celery_beat:
+    container_name: at_tracker_celery_beat
+    build: ../
+    environment:
+      - REDIS_HOST=at_tracker_redis
+    restart: always
+    command: ['celery_beat']
+
+  at_tracker_redis:
+    container_name: at_tracker_redis
+    image: redis
+    ports:
+      - 6379
+    volumes:
+      - ./volumes/redis:/data:rw
+    restart: always
