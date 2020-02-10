@@ -47,4 +47,6 @@ services:
     image: redis
     ports:
       - 6379
+    volumes:
+      - ./volumes/redis:/data
     restart: always
