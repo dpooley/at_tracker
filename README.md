@@ -2,6 +2,8 @@
 
 Track and display real-time data from [Auckland Transport API](https://dev-portal.at.govt.nz/)
 
+![](https://i.imgur.com/W5VgriZ.png)
+
 ## How to
 
 Deploy with docker-compose:
