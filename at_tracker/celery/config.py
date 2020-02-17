@@ -17,20 +17,20 @@ beat_schedule = {
     'fetch_routes':{
         'task': 'at_tracker.celery.tasks.fetch_routes',
         #'schedule': crontab(minute=0, hour='*/4'),
-        'schedule': 60.0,
+        'schedule': 600.0,
     },
     'fetch_stops':{
         'task': 'at_tracker.celery.tasks.fetch_stops',
         #'schedule': crontab(minute=1, hour='*/4'),
-        'schedule': 60.0,
+        'schedule': 600.0,
     },
     'fetch_agencies':{
         'task': 'at_tracker.celery.tasks.fetch_agencies',
         #'schedule': crontab(minute=2, hour=1),
-        'schedule': 60.0,
+        'schedule': 600.0,
     },
     'fetch_vehicles':{
         'task': 'at_tracker.celery.tasks.fetch_vehicles',
-        'schedule': 10.0,
+        'schedule': 30.0,
     }
 }
